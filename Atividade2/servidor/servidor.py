@@ -2,6 +2,14 @@ from http.server import HTTPServer
 from dispatcher import RemoteDispatcher, RemoteObject
 from threading import Thread
 from base64 import b64decode
+import json
+
+def load_users():
+    with open("users.json", "r") as file:
+        data = json.load(file)
+
+    return data['users']
+
 
 class AuthenticatedServer(HTTPServer):
     def __init__(self, server_address, handler_class):
@@ -15,7 +23,13 @@ class AuthenticatedServer(HTTPServer):
             method, encoded = auth_header.split(" ")
             userpass = b64decode(encoded).decode()
             user, passwd = userpass.split(":")
-            return user == "admin" and passwd == "1234"
+            data = load_users()
+            for user_json in data:
+                if user_json['username'] == user:
+                    if user_json['password'] == passwd:
+                        return True
+            return False
+
         except:
             return False
 
