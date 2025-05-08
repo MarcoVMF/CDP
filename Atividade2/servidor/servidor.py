@@ -1,5 +1,5 @@
 from http.server import HTTPServer
-from dispatcher import RemoteDispatcher, RemoteObject
+from servidor.dispatcher import RemoteDispatcher, RemoteObject
 from threading import Thread
 from base64 import b64decode
 import json
@@ -29,7 +29,6 @@ class AuthenticatedServer(HTTPServer):
                     if user_json['password'] == passwd:
                         return True
             return False
-
         except:
             return False
 

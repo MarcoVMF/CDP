@@ -1,5 +1,5 @@
-from CDP.Atividade2.common.protocol import ProtocolHandler
-from remote_proxy import RemoteFileProxy
+from common.protocol import ProtocolHandler
+from cliente.remote_proxy import RemoteFileProxy
 
 def menu():
     print("\nProtocolos disponíveis:")
@@ -18,10 +18,10 @@ if __name__ == "__main__":
 
     opcao = menu()
     if opcao == "1":
-        handler.protocolo_R(proxy)
+        handler.protocolo_R()
     elif opcao == "2":
-        handler.protocolo_RR(proxy)
+        handler.protocolo_RR()
     elif opcao == "3":
-        handler.protocolo_RRA(proxy)
+        handler.protocolo_RRA()
     else:
         print("Opção inválida.")
