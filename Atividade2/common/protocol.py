@@ -1,34 +1,46 @@
-from common.utils import salvar_em_slave
-import time
 from threading import Thread
+import time
+from common.utils import salvar_em_slave
 
+# Definição da classe que controla a escolha e lógica dos protocolos
 class ProtocolHandler:
-    def __init__(self, proxy):
+    def __init__(self, proxy, modo):
         self.proxy = proxy
+        self.modo = modo.upper()
 
-    def protocolo_R(self):
+    def sincronizar(self):
+        if self.modo == "R":
+            self._protocolo_R()
+        elif self.modo == "RR":
+            self._protocolo_RR()
+        elif self.modo == "RRA":
+            self._protocolo_RRA()
+        else:
+            print("Modo de protocolo inválido.")
+
+    def _protocolo_R(self):
         print("[R] Solicitando conteúdo...")
-        resp = self.proxy.call("get_file_content", "master.txt")
+        resp = self.proxy.call("get_file_content", file="master.txt")
         if "result" in resp:
             salvar_em_slave(resp["result"])
             print("Conteúdo salvo em slave.txt")
         else:
             print("Erro:", resp.get("error"))
 
-    def protocolo_RR(self):
+    def _protocolo_RR(self):
         print("[RR] Solicitando conteúdo com confirmação...")
-        resp = self.proxy.call("get_file_content", "master.txt")
+        resp = self.proxy.call("get_file_content", file="master.txt")
         if "result" in resp:
             salvar_em_slave(resp["result"])
             print("Conteúdo salvo. Enviando confirmação...")
-            confirm = self.proxy.call("confirm_receipt", "master.txt")
+            confirm = self.proxy.call("confirm_receipt", file="master.txt")
             print("Confirmação enviada:", confirm)
         else:
             print("Erro:", resp.get("error"))
 
-    def protocolo_RRA(self):
+    def _protocolo_RRA(self):
         print("[RRA] Solicitando conteúdo com ACK assíncrono...")
-        resp = self.proxy.call("get_file_content", "master.txt")
+        resp = self.proxy.call("get_file_content", file="master.txt")
         if "result" in resp:
             salvar_em_slave(resp["result"])
             print("Conteúdo salvo em slave.txt")
@@ -36,8 +48,8 @@ class ProtocolHandler:
 
             def enviar_ack():
                 time.sleep(5)
-                ack = self.proxy.call("confirm_receipt", "master.txt")
-                print("ACK assíncrono enviado:", ack)
+                ack = self.proxy.call("confirm_receipt", file="master.txt")
+                print("\n ACK assíncrono enviado:", ack)
 
             Thread(target=enviar_ack).start()
         else:
