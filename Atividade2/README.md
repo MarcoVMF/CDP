@@ -12,5 +12,8 @@ Para a execução do código, deve-se inicializar o cliente e o servidor, para i
 O seguintes fluxo está disponível para o cliente:
 
 1 - Escolher nome de usuário e senha
+
 2 - Escolher o tipo de protocolo que será usado: R, RR, RRA
+
 3 - Escolher se a atualização do .txt será automática (por monitoramento) ou será quando o usuário escolher
+
