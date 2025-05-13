@@ -17,5 +17,7 @@ Para inicializar o cliente:
 Após a inicialização deles deve-se seguir os fluxos dispostos na execução do terminal cliente:
 
 1 - Definir senha e usuário (verificar no users.json do server)
+
 2 - Definir o tipo de protocolo que será utilizado (R, RR, RRA)
+
 3 - Definir se a comunicação será por demanda ou com sincronismo automático
