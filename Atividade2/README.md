@@ -1,19 +1,21 @@
-Essa pasta é dedicada para a Atividade 2 da disciplina de Computação Distribuída e Paralela, que consiste em desenvolver um RMI do zero, sem frameworks.
+Essa atividade foi proposta com objetivo de entender e desenvolver os conceitos de RMI (Remote Method Invocation), para aumentar o domínio sobre o conceito de invocação remota. Para a execução desse sistema, deve-se estar primeiramente localizado na pasta "Atividade2". 
 
-Para a execução do código, deve-se inicializar o cliente e o servidor, para isso deve-se utilizar os seguintes comandos em dois terminais diferentes:
+Deve-se usar o seguintes comandos em dois terminais diferentes:
 
-``` 
-  python -m client.client
-
-  python -m server.server
+Para inicializar o servidor:
 
 ```
+    python -m server.server
+```
 
-O seguintes fluxo está disponível para o cliente:
+Para inicializar o cliente:
 
-1 - Escolher nome de usuário e senha
+```
+    python -m client.client
+```
 
-2 - Escolher o tipo de protocolo que será usado: R, RR, RRA
+Após a inicialização deles deve-se seguir os fluxos dispostos na execução do terminal cliente:
 
-3 - Escolher se a atualização do .txt será automática (por monitoramento) ou será quando o usuário escolher
-
+1 - Definir senha e usuário (verificar no users.json do server)
+2 - Definir o tipo de protocolo que será utilizado (R, RR, RRA)
+3 - Definir se a comunicação será por demanda ou com sincronismo automático
