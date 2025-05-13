@@ -1,0 +1,14 @@
+python 3.12.x
+
+# Todas essas bibliotecas são necessárias para o funcionamento do código e todas elas estão disponíveis por padrão no python.
+
+urllib
+json
+requests
+hashlib
+threading
+time
+os
+abc
+http
+datetime
