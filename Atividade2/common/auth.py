@@ -1,5 +1,4 @@
 import json
-import hashlib
 
 # Função para carregar o json dos usuários "cadastrados"
 def load_users():
